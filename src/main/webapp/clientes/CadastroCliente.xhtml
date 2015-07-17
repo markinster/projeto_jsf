@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"     
+                           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/WEB-INF/template/LayoutMain.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+    
+	
+	<ui:define name="titulo">Novo Cliente</ui:define>
+		
+	<ui:define name="corpo">
+		<p:messages autoUpdate="true" /> 
+		<h:form id="form" styleClass="tabulacao">
+
+			<f:metadata>
+				<o:viewParam name="cliente" value="#{cadastroClienteBean.selecionado}" converter="clienteConverter" />
+			</f:metadata>
+
+			<h1>Novo Cliente</h1>
+			
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/clientes/CadastroCliente" />				
+					<p:commandButton value="Salvar" action="#{cadastroClienteBean.salvar}" update="@form"/>
+				</p:toolbarGroup>
+			
+			
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/clientes/PesquisaCliente"  />
+				</p:toolbarGroup>			
+			
+			</p:toolbar>
+			
+			<p:panelGrid columns="2" style="width: 100%; margin-top: 5px;" columnClasses="rotulo, campo">
+						
+				<p:outputLabel value="Nome:" for="nome" />
+				<p:inputText id="nome" size="60" maxlength="80"
+				 	value="#{cadastroClienteBean.selecionado.nome}"/>
+				
+				<p:outputLabel value="Tipo:" for="tipo" />
+				<p:selectOneRadio id="tipo" value="#{cadastroClienteBean.selecionado.tipo}">					
+					<f:selectItems value="#{cadastroClienteBean.tiposPessoa}" var="tipoPessoa" 
+						itemLabel="#{tipoPessoa.descricao}" itemValue="#{tipoPessoa}"  />
+				</p:selectOneRadio>
+					
+				<p:outputLabel value="Cnpj:" for="cnpj" />
+				<p:inputMask id="cnpj" mask="99.999.999/9999-99" 
+					value="#{cadastroClienteBean.selecionado.documentoReceitaFederal}"/> 
+				
+				<p:outputLabel value="E-mail:" for="email" />
+				<p:inputText id="email" value="#{cadastroClienteBean.selecionado.email}" size="60"/>
+				
+			</p:panelGrid>
+			
+			<p:commandButton value="Adicionar endereço" process="@this"
+				style="margin-top: 20px;" onclick="PF('dialogEnderecos').show();"/>
+			
+			<p:dataTable id="dataEnderecos" emptyMessage="Nenhum endereço cadastrado" style="margin-top: 20px;"
+				var="endereco" paginator="true" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+				rows="5" value="#{cadastroClienteBean.selecionado.enderecos}">
+				
+
+				<p:column headerText="Logradouro">
+					<h:outputText value="#{endereco.logradouro}" />
+				</p:column>
+				
+				<p:column headerText="Numero" style="width: 100px;">
+					<h:outputText value="#{endereco.numero}" />
+				</p:column>
+				
+				<p:column headerText="Complemento" >
+					<h:outputText value="#{endereco.complemento}" />
+				</p:column>
+				
+				<p:column headerText="Cep" style="width: 100px;">
+					<h:outputText value="#{endereco.cep}" />
+				</p:column>
+				
+				<p:column headerText="Cidade / UF" >
+					<h:outputText value="#{endereco.cidade} / #{endereco.uf}" />
+				</p:column>
+				
+				<p:column style="text-align: center; width: 100px;">
+					<p:button icon="ui-icon-pencil"></p:button>
+					
+					<p:commandButton icon="ui-icon-trash" action="#{cadastroClienteBean.removeEndereco}" update="dataEnderecos">
+						<f:setPropertyActionListener value="#{endereco}" target="#{cadastroClienteBean.endereco}" />
+						<p:confirm header="Exclusão de endereco" icon="ui-icon-alert" 
+							message="Tem certeza que deseja excluir este endereco ?" />
+				    </p:commandButton>
+				</p:column>			
+			
+			
+			</p:dataTable>
+			
+			<p:dialog header="Inclusão de endereço" modal="true" widgetVar="dialogEnderecos" resizable="false">
+				<p:panelGrid columns="2">
+					<p:outputLabel for="logradouro" value="Logradouro:"/>
+					<p:inputText id="logradouro" size="60"
+						value="#{cadastroClienteBean.endereco.logradouro}"/>
+				
+					<p:outputLabel for="numero" value="Numero:"/>
+					<p:inputText id="numero" value="#{cadastroClienteBean.endereco.numero}"/>
+					
+					<p:outputLabel for="complemento" value="Complemento:"/>
+					<p:inputText id="complemento" value="#{cadastroClienteBean.endereco.complemento}"/>
+					
+					<p:outputLabel for="cep" value="CEP:"/>
+					<p:inputText id="cep" value="#{cadastroClienteBean.endereco.cep}"/>
+					
+					<p:outputLabel for="cidade" value="Cidade:"/>
+					<p:panelGrid columns="3" styleClass="semBorda">
+						<p:inputText id="cidade" size="30" value="#{cadastroClienteBean.endereco.cidade}"/>
+						
+						<p:outputLabel for="uf" value="UF:" style="margin-left: 20px;"/>
+						<p:selectOneMenu id="uf" size="30" style="margin-left: 15px;" value="#{cadastroClienteBean.endereco.uf}">		
+ 							<f:selectItems value="#{geografiaBean.estados}" var="estado" 
+ 								itemLabel="#{estado}" itemValue="#{estado}"  /> 
+ 						</p:selectOneMenu>
+ 					
+ 					</p:panelGrid>
+									
+				</p:panelGrid>
+				
+				<p:commandButton value="Incluir" style="margin-top: 10px;"
+					action="#{cadastroClienteBean.addEndereco}" update="@form"/>
+			
+			
+			</p:dialog>
+			
+			<p:confirmDialog global="true" >
+		        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		    </p:confirmDialog>
+		
+		</h:form>	
+ 	</ui:define>
+	
+</ui:composition>	
+	

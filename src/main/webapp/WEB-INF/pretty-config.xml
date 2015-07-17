@@ -1,0 +1,68 @@
+<!-- Este arquivo deve ser colocado na pasta WEB-INF -->
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+                      
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/login.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="home">
+		<pattern value="/home" />
+		<view-id value="/home.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="ErrorPage">
+		<pattern value="/errorPage" />
+		<view-id value="/errorPage.xhtml" />
+	</url-mapping>
+	
+	<!-- CLIENTE -->
+	<url-mapping id="CadastroCliente">
+		<pattern value="/CadastroCliente" />
+		<view-id value="/clientes/CadastroCliente.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="PesquisaCliente">
+		<pattern value="/PesquisaCliente" />
+		<view-id value="/clientes/PesquisaCliente.xhtml" />
+	</url-mapping>
+	
+	<!-- PEDIDO -->
+	<url-mapping id="CadastroPedido">
+		<pattern value="/CadastroPedido" />
+		<view-id value="/pedidos/CadastroPedido.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="PesquisaPedido">
+		<pattern value="/PesquisaPedido" />
+		<view-id value="/pedidos/PesquisaPedido.xhtml" />
+	</url-mapping>
+	
+	
+	<!-- USUARIO -->
+	<url-mapping id="CadastroUsuario">
+		<pattern value="/CadastroUsuario" />
+		<view-id value="/usuarios/CadastroUsuario.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="PesquisaUsuario">
+		<pattern value="/PesquisaUsuario" />
+		<view-id value="/usuarios/PesquisaUsuario.xhtml" />
+	</url-mapping>
+	
+	<!-- PRODUTOS -->
+	<url-mapping id="CadastroProduto">
+		<pattern value="/CadastroProduto" />
+		<view-id value="/produtos/CadastroProduto.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="PesquisaProduto">
+		<pattern value="/PesquisaProduto" />
+		<view-id value="/produtos/PesquisaProduto.xhtml" />
+	</url-mapping>
+  
+  
+</pretty-config>

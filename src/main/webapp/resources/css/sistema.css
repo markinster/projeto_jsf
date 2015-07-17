@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+
+h1 {
+	font-size: 20px;
+	font-weight: 500;
+	padding: 0px;	
+}
+
+body {
+	font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	font-weight: normal;
+	background: #f4f4f4;
+}
+
+header {
+	padding: 5px 0px;
+	margin-bottom: 20px;
+	height: 30px;
+	/*background-color: #545454;*/
+	/*background: #1242c1;*/
+	background: #18679d;
+	color: #fff;	
+	box-shadow: 0px 2px 2px;
+}
+
+/* id  */
+#conteudo {
+	padding: 1px;
+}
+
+#box_login {
+	margin-top: 15%;
+	margin-left: 38%;
+}
+
+.grid-login {
+	font-size: 11px;
+	padding: 15px;
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+}
+
+/* primeiro div encontrado logo apos o header */
+header > div {
+	margin-left: 12px;
+}
+
+footer {
+	padding: 0px 8px;
+	margin-bottom: 10px;
+}
+
+.rotulo {
+	width: 150px;
+	padding-left: 20px;
+} 
+
+.ajax-status {
+	position: fixed;
+	top: 45%;
+	left: 42%;
+	width: 35px;
+	height: 35px;
+}
+
+.tabulacao {
+	margin-top: 10px;
+	margin-left: 15px;
+	width: 97%; 
+	font-size: 11px;
+}
+
+.ui-state-default {
+	font-size: 11px;
+}
+
+.produto-tabela input { 
+	width: 99%;
+}
+
+/* Customiza TabView - início */
+.ui-tabs .ui-tabs-panel {
+    padding: 0.5em 0.2em !important;
+}
+
+.ui-tabs {
+    padding: 0px !important;
+}
+
+.ui-tabs .ui-tabs-nav {
+    margin: -1px !important;
+}
+
+.ui-tabs.ui-tabs-top > .ui-tabs-nav {
+    padding: 0px !important;
+}
+/* Customiza TabView - fim */
+
+/* Menu sistema inicio */
+.menu-sistema {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
+.menu-sistema .ui-icon-triangle-1-s {
+    background: url(#{resource['images:seta-para-baixo.png']}) no-repeat;
+}
+/* Menu sistema fim */
+
+
+.semBorda tr, .semBorda td {  
+    border: none !important;  
+    padding-left: 0px !important;
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"     
+                           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/WEB-INF/template/LayoutMain.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="titulo">Pesquisa de pedidos</ui:define>
+	
+	<ui:define name="corpo">
+		<h:form id="form" styleClass="tabulacao">
+			<h1>Pesquisa de pedidos</h1>
+			
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" action="#{pesquisaPedidosBean.pesquisar}" update="tablePedidos" />				
+				</p:toolbarGroup>		
+			
+				<p:toolbarGroup align="right">
+					<p:button value="novo" outcome="/pedidos/CadastroPedido"  />
+				</p:toolbarGroup>		
+			</p:toolbar>
+			
+			<h:panelGrid columns="2" style="padding:10px;  margin-top: 5px; margin-bottom: 10px; font-size:12px;" columnClasses="rotulo, campo">
+				<p:outputLabel value="Numero:" for="numeroInicial" />
+				<h:panelGroup>				
+					<p:inputText id="numeroInicial" size="10" value="#{pesquisaPedidosBean.filtro.numeroDe}"/>					
+					<p:outputLabel value="a" for="numeroFinal" style="margin-left:10px; margin-right:10px;"/> 
+					<p:inputText id="numeroFinal" size="10" value="#{pesquisaPedidosBean.filtro.numeroAte}"/>
+ 			    </h:panelGroup>
+				
+				<p:outputLabel value="Data de criação:" for="dataInicial" />
+				<h:panelGroup>				
+					<p:calendar id="dataInicial" pattern="dd/MM/yyyy" size="10"
+						 value="#{pesquisaPedidosBean.filtro.dataCriacaoDe}" />	
+						 			
+					<p:outputLabel value="a" for="dataFinal" style="margin-left:10px; margin-right:10px;"/> 
+					<p:calendar id="dataFinal" pattern="dd/MM/yyyy" size="10" 
+						value="#{pesquisaPedidosBean.filtro.dataCriacaoAte}" />
+						
+				</h:panelGroup>
+				
+				
+				<p:outputLabel value="Vendedor:" for="vendedor" />
+				<p:inputText id="vendedor" size="60" value="#{pesquisaPedidosBean.filtro.nomeVendedor}"/>
+				
+				
+				<p:outputLabel value="Cliente:" for="cliente" />
+				<p:inputText id="cliente" size="60" value="#{pesquisaPedidosBean.filtro.nomeCliente}" />			
+				
+				<p:outputLabel value="Status:" for="status"/>
+				<p:selectManyCheckbox id="status" value="#{pesquisaPedidosBean.filtro.statuses}"> 
+				    <f:selectItems var="status"  value="#{pesquisaPedidosBean.statuses}"
+				    	itemLabel="#{status.descricao}" itemValue="#{status}"/>					
+				</p:selectManyCheckbox>
+				
+			</h:panelGrid>
+			 
+			<p:dataTable id="tablePedidos" style="margin-top: 10px;" 
+				var="pedido" 
+				paginator="true" rows="9" paginatorPosition="bottom"  paginatorAlwaysVisible="false"
+				emptyMessage="Nenhum produto encontrado"
+				value="#{pesquisaPedidosBean.pedidosFiltrados}"> 
+				
+				<p:column headerText="Numero" width="50" style="text-align:center;">
+					<p:outputLabel value="#{pedido.id}"/>
+				</p:column>
+				
+				<p:column headerText="Cliente" >
+					<p:outputLabel value="#{pedido.cliente.nome}"/>
+				</p:column>
+				
+				<p:column headerText="Vendedor" >
+					<p:outputLabel value="#{pedido.vendedor.nome}"/>
+				</p:column>
+				
+				<p:column headerText="Data de criação" >
+					<p:outputLabel value="#{pedido.dataCriacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+				</p:column>				
+								
+				<p:column headerText="Valor total" >
+					<p:outputLabel value="#{pedido.valorTotal}"/>
+				</p:column>				
+								
+				<p:column headerText="Status" >
+					<p:outputLabel value="#{pedido.status}"/>
+				</p:column>				
+								
+				<p:column style="text-align: center; width: 90px;" > 
+					<p:button icon="ui-icon-pencil" outcome="/pedidos/CadastroPedido">
+						<f:param name="pedido" value="#{pedido.id}"/>
+					</p:button>
+				</p:column>				
+				
+			</p:dataTable>
+		
+		</h:form>
+		
+	</ui:define>
+	
+</ui:composition>	
+	

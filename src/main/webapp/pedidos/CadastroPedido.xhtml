@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"     
+                           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/WEB-INF/template/LayoutMain.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+    
+    
+    <f:metadata>
+    	<o:viewParam name="pedido" value="#{cadastroPedidoBean.pedido}" converter="pedidoConverter"/>
+    	<f:event listener="#{cadastroPedidoBean.inicializar}" type="preRenderView" /> 
+    </f:metadata>
+	
+	<ui:define name="titulo">Novo pedido</ui:define>
+	 
+	<ui:define name="corpo">
+		<h:form id="form" styleClass="tabulacao">
+		
+			<p:messages autoUpdate="true" closable="true"/>
+			<h1>Novo Pedido</h1>
+			
+			<ui:include src="/WEB-INF/template/pedidos/BotoesPedido.xhtml" />
+			
+			<ui:include src="/WEB-INF/template/pedidos/CapaPedido.xhtml" />
+		
+		
+			<p:tabView style="font-size: 12px;" id="tabPedido">
+				<p:tab title="Itens" >
+					<!-- ui:include src="/WEB-INF/template/pedidos/ItensPedido.xhtml" / -->
+				</p:tab>
+				
+				
+				<p:tab title="Datas de entrega">
+					<ui:include src="/WEB-INF/template/pedidos/DadosEntregaPedido.xhtml" />
+				</p:tab>
+				
+				<p:tab title="Observação">
+					<ui:include src="/WEB-INF/template/pedidos/ObservacaoPedido.xhtml" />
+				</p:tab>
+			
+			</p:tabView>
+			
+		</h:form>
+		
+	</ui:define>
+	
+</ui:composition>	
+	
+ 
