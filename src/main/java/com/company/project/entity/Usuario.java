@@ -57,7 +57,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 	
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 33)
 	public String getSenha() {
 		return senha;
 	}

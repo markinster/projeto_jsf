@@ -7,7 +7,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/base_teste" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/base_dados" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="1234" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />		
@@ -22,12 +22,28 @@
 				value="org.hibernate.connection.C3P0ConnectionProvider"/>
 			
 			<property name="hibernate.c3p0.acquire_increment" value="1" />   
-			<property name="hibernate.c3p0.timeout" value="1800" />   
+			<property name="hibernate.c3p0.timeout" value="600" />   
 			<property name="hibernate.c3p0.min_size" value="3" />   
 			<property name="hibernate.c3p0.max_size" value="10" />   
 			<property name="hibernate.c3p0.max_statements" value="50" />   
-			<property name="hibernate.c3p0.idle_test_period" value="60"/>
+			<property name="hibernate.c3p0.idle_test_period" value="300"/>
 			
+		</properties>
+	</persistence-unit>
+	
+	
+	<persistence-unit name="CreateDB">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/base_dados" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="1234" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />		
+			
+			<property name="hibernate.hbm2ddl.auto" value="create"/>	
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />			
 		</properties>
 	</persistence-unit>
 	

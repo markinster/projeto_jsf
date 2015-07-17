@@ -57,8 +57,8 @@
 		 -->
 		 
 		 <authentication-provider user-service-ref="appUserDetailService">
-		 	<password-encoder hash="plaintext"/>
-		 	<!-- password-encoder hash="md5"/ -->
+		 	<!-- password-encoder hash="plaintext"/ -->
+		 	<password-encoder hash="md5"/>
 		 </authentication-provider>
 	</authentication-manager>
            
