@@ -23,7 +23,7 @@ public class StringUtils {
 			BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
 			String md5 = hash.toString(16);
 
-			// MARCOS: adicionando zeros a esquerda
+			// MARKINSTER: adicionando zeros a esquerda
 			while (md5.length() < 32) 
 				md5 = "0" + md5;			
 
